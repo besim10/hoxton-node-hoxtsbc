@@ -1,0 +1,28 @@
+
+.logged-in-page__header {
+   grid-column-start: 1;
+   grid-column-end: 3;
+}
+
+.logged-in-page__bottom{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.logged-in-page__logout-container{
+  grid-column-start: 2;
+}
+
+.logged-in-page_transactions {
+  margin-top: 20px;
+}
+
+.logged-in-page_transactions span{
+  color: #555;
+  display: grid;
+  grid-template-columns: auto 200px 150px;
+}
+
+.logged-in-page_transactions span:hover{
+  background-color: beige;
+}

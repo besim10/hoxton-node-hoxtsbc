@@ -1,0 +1,11 @@
+ /* create a blue large button */
+.button {
+  background-color: #00AEEF;
+  color: #fff;
+  font-size: 1.2em;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
