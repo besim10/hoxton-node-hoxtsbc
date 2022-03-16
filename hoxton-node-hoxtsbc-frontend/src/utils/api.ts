@@ -29,13 +29,13 @@ export const sendRequest = async (
 
 export const handleLogout = async () => {
   //FINISH-ME: remove token from local storage
-
+  localStorage.clear();
   window.location.href = "/";
 };
 
 export const handleSignUp = async (body: RequestBody) => {
   await sendRequest("register", "POST", body);
-  window.location.href = "/";
+  // window.location.href = "/";
 };
 
 export const handleLogin = async (body: RequestBody) => {
@@ -44,13 +44,15 @@ export const handleLogin = async (body: RequestBody) => {
   const { data, token, error } = result;
   // FINISH-ME: set token in local storage
   localStorage.setItem("token", token);
-  return { data, error };
+  return { data: result.user, error };
 };
 
 export const signInWithJWT = async () => {
-  let token; // FINISH-ME: check for token
+  let token = localStorage.getItem("token"); // FINISH-ME: check for token
+  if (!token) return;
   // Note: if token is not found, it can be 'undefined'(string)
-
+  if (token === "undefined") return;
+  console.log(token);
   const result = await sendRequest("banking-info", "POST", undefined, token);
 
   return result || null;

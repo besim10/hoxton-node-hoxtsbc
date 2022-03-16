@@ -10,7 +10,7 @@ interface Props {
   userData: User
 }
 
-const LoggedInPage = ({ userData: { fullName, amountInAccount, transactions } }: Props): JSX.Element => {
+const LoggedInPage = ({ userData: { fullName, amountInAccount, transaction } }: Props): JSX.Element => {
   return (
     <>
       <div className='logged-in-page__bottom'>
@@ -22,12 +22,12 @@ const LoggedInPage = ({ userData: { fullName, amountInAccount, transactions } }:
       <div>
         <Card header='Recent transactions'>
           <div className='logged-in-page_transactions'>
-            {transactions.length && <span>
+            {transaction.length && <span>
               <p>Beneficiary</p>
               <p>Date of completion</p>
               <p>Amount</p>
             </span>}
-            {transactions.map(({ amount, currency, isPositive, receiverOrSender, completedAt, id }) =>
+            {transaction.map(({ amount, currency, isPositive, receiverOrSender, completedAt, id }) =>
               <span key={id}>
                 <p>{receiverOrSender}</p>
                 <p>{completedAt}</p>

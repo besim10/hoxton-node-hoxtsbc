@@ -27,9 +27,11 @@ const SignupForm = ({ isOpen, handleClose }: Props) => {
     return (val: string) => setValues({ ...values, [key]: val });
   }, [setValues, values])
 
-  const handleSubmit = React.useCallback(() => {
+  const handleSubmit = React.useCallback((event) => {
+    event.preventDefault()
     return api.handleSignUp(values).then((r: any) => {
-      if (r.error) return setError(r.error);
+      
+      if (r?.error) return setError(r?.error);
 
       // feel free to improve the UX ;)
       handleClose();

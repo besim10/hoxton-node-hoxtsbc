@@ -3,7 +3,7 @@ import './style.css';
 
 interface Props extends React.HTMLProps<HTMLButtonElement> {
   text: string;
-  handleClick: () => void;
+  handleClick: (e: React.SyntheticEvent) => void;
   type?: HTMLButtonElement['type'];
 }
 

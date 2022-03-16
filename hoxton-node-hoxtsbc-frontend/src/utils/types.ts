@@ -1,4 +1,3 @@
-
 export type Transaction = {
   id: number;
   user_id: number;
@@ -7,14 +6,14 @@ export type Transaction = {
   receiverOrSender: string;
   completedAt: string;
   isPositive: boolean;
-}
+};
 
 export type User = {
   id: number;
   email: string;
   fullName: string;
   amountInAccount: number;
-  transactions: Transaction[]
-}
+  transaction: Transaction[];
+};
 
-export type RequestBody = Record<string, any>
+export type RequestBody = Record<string, any>;

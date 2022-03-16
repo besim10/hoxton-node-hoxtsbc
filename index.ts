@@ -17,7 +17,11 @@ async function getUserFromToken(token: string) {
   // @ts-ignore
   const decodedData = jwt.verify(token, process.env.MY_SECRET);
   // @ts-ignore
-  const user = await prisma.user.findUnique({ where: { id: decodedData.id } });
+  const user = await prisma.user.findUnique({
+    //@ts-ignore
+    where: { id: decodedData.id },
+    include: { transaction: true },
+  });
 
   return user;
 }
@@ -73,7 +77,10 @@ app.post("/log-in", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await prisma.user.findUnique({ where: { email: email } });
+    const user = await prisma.user.findUnique({
+      where: { email: email },
+      include: { transaction: true },
+    });
     // @ts-ignore
     const passwordMatches = bcrypt.compareSync(password, user.password);
 
@@ -87,11 +94,11 @@ app.post("/log-in", async (req, res) => {
   }
 });
 app.post("/banking-info", async (req, res) => {
-  const { token } = req.body;
+  const token = req.headers.authorization;
 
   try {
-    const user = await getUserFromToken(token);
-    res.send(user);
+    const user = await getUserFromToken(token as string);
+    res.send({ user: user });
   } catch (err) {
     // @ts-ignore
     res.status(400).send({ error: err.message });

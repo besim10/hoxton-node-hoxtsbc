@@ -14,18 +14,20 @@ const App = function () {
   React.useEffect(() => {
     api.signInWithJWT()
       .then(resp => {
+        console.log(resp)
         if (!resp) return;
 
-        resp.data && setUserData(resp.data)
+        resp.user && setUserData(resp.user)
       })
   }, [])
 
+  
   const handleLogin = React.useCallback((email, password) => {
     setError(null);
 
     return api.handleLogin({ email, password })
       .then(resp => {
-        if (resp.error) return setError(resp.error)
+        if (resp?.error) return setError(resp?.error)
 
         return setUserData(resp.data);
       })
